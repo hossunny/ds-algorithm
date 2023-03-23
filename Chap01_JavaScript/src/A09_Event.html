@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1>JavaScript Event</h1>
+
+      <button name="button 01" onclick="alert('Btn01 Event')">Btn 01</button>
+      <button name="button 02" onclick="btn02Event(event)">Btn 02</button>
+      <button name="button 03" id="btn03">Btn 03</button>
+      <button name="button 04" id="btn04">Btn 04</button>
+      <button name="button 05" id="btn05">Btn 05</button>
+      <button name="button 06" id="btn06">Btn 06</button>
+    </div>
+
+    <script type="text/javascript">
+      function btn02Event(evt) {
+        alert('BTN02 Event');
+        console.log(evt.target);
+        console.log(this); // window
+      }
+      // 함수 안에 함수 들어갔으니 callback
+      document.getElementById('btn03').addEventListener('click', function (evt) {
+        alert('BTN03 Event');
+        console.log(evt.target);
+        console.log(this); // button
+      });
+
+      // color 인자를 못 넣어주니 처리가 안된다. default 설정하지 않는 이상
+      document.getElementById('btn04').addEventListener('click', function (evt, color) {
+        alert('BTN04 Event');
+        evt.target.style.background = color;
+      });
+
+      function evt05Event(evt, color) {
+        alert('BTN05 Event');
+        evt.target.style.background = color;
+      }
+
+      function evt06Event(evt) {
+        alert('BTN 06 Event');
+        evt.target.style.background = color;
+      }
+      document.getElementById('btn06').addEventListener('click', evt06Event);
+      // document.getElementById('btn05').addEventListener('click', function (evt) {
+      //   evt05Event(evt, 'orange');
+      // });
+    </script>
+  </body>
+</html>
